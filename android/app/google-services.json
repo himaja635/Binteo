@@ -1,0 +1,38 @@
+{
+  "project_info": {
+    "project_number": "909357675498",
+    "project_id": "localads-1316b",
+    "storage_bucket": "localads-1316b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:909357675498:android:28160cecacd0ab5cc2b893",
+        "android_client_info": {
+          "package_name": "com.binteo.binteoapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "465381452757-opfdij6hh74kcu77410hodluij8q7nh4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.binteo.binteoapp",
+            "certificate_hash": ""
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVCMzVeyCPqMzX_KkOgCUlsVfcUmd-CVQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

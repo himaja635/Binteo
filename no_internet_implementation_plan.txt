@@ -1,0 +1,15 @@
+Global No Internet Connection Handling Plan
+
+1. Design Decision Needed
+Do you want a global overlay that blocks the entire app when offline, or do you prefer per-screen handling (e.g., disabling buttons and showing a red banner at the top of the Login and Register screens)?
+
+2. Global State Management
+- We will use the existing ConnectivityService to provide a global stream of internet connectivity status.
+- lib/main.dart: Wrap the main MaterialApp with a state management solution (or a StreamBuilder listening to ConnectivityService). If offline, we can inject a global banner on top of the app using the builder property of MaterialApp.
+
+3. Update Authentication Screens
+- lib/login_screen.dart: Listen to connectivity status. Disable the "Login" and "Continue with Google" buttons when offline. Show an intuitive offline message (e.g., a small banner below the header).
+- lib/register_screen.dart: Similarly, disable registration inputs/buttons when offline to prevent failed network requests.
+
+4. Refine WebView Offline Screen
+- lib/webview_page.dart: The current implementation replaces the WebView with an offline Lottie animation. We will ensure this integrates seamlessly with the new global connectivity listener, avoiding duplicate listeners.
