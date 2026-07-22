@@ -1,0 +1,51 @@
+workflows:
+  flutter-build:
+    name: Flutter Android + iOS Build
+
+    environment:
+      flutter: stable
+      xcode: latest
+
+    scripts:
+      - name: Get Flutter packages
+        script: |
+          flutter pub get
+
+      - name: Build Android APK
+        script: |
+          flutter build apk --release
+
+      - name: Build Android App Bundle
+        script: |
+          flutter build appbundle --release
+
+      - name: Build iOS Simulator
+        script: |
+          flutter build ios --simulator --no-codesign
+
+      - name: Zip iOS Simulator App
+        script: |
+          cd build/ios/iphonesimulator
+          zip -r Runner.zip Runner.app
+
+      - name: Build Unsigned iOS
+        script: |
+          flutter build ios --release --no-codesign
+
+      - name: Package Unsigned IPA
+        script: |
+          mkdir -p build/ios/ipa/Payload
+          cp -R build/ios/iphoneos/Runner.app build/ios/ipa/Payload/
+          cd build/ios/ipa
+          zip -r FlutterIpaExport.ipa Payload
+
+    artifacts:
+      - build/app/outputs/flutter-apk/*.apk
+      - build/app/outputs/bundle/release/*.aab
+      - build/ios/iphonesimulator/Runner.zip
+      - build/ios/ipa/FlutterIpaExport.ipa
+
+    cache:
+      cache_paths:
+        - ~/.pub-cache
+        - $HOME/Library/Caches/CocoaPods
